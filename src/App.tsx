@@ -1,4 +1,4 @@
-
+import './Sass/style.scss';
 
 const App = () => {
   return (
