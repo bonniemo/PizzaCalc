@@ -1,18 +1,20 @@
-import { useState } from "react"
+import { PropList } from "./CreatePizza";
 
-
-const Topping = () => {
-  const [topping, setTopping] = useState([]as string[]);
-  const boxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(".toppings");
-  const checkedBoxes = [] as string[]
-
+const Topping = ({ pizza, setPizza }: PropList) => {
+  const boxes: NodeListOf<HTMLInputElement> =
+    document.querySelectorAll(".toppings");
+  let checkedBoxes = [] as string[];
 
   const handleClick = () => {
-    boxes.forEach(box => {
-      box.checked ? checkedBoxes.push(box.id) : console.log('not checked')
-    });   
-    setTopping(checkedBoxes)
-  }
+    boxes.forEach((box) => {
+      box.checked ? checkedBoxes.push(box.id) : console.log("not checked");
+      // box.checked = false;
+    });
+    
+    setPizza({ ...pizza, topping: checkedBoxes, isReady: true });
+    // checkedBoxes = []
+    
+  };
   return (
     <section>
       <h1>Toppings 10kr / styck</h1>
@@ -29,14 +31,8 @@ const Topping = () => {
       <label htmlFor="sås">Sås</label>
 
       <button onClick={handleClick}>Lägg till</button>
-
-      {topping.map((t) => {
-        return <p key={t}>{t}</p>
-      })}
-
-     
     </section>
-  )
-}
+  );
+};
 
-export default Topping
+export default Topping;

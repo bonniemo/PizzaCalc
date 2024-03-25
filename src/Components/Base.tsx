@@ -1,17 +1,16 @@
-import { useContext, useState } from "react";
-import { PizzaContext } from "./PizzaContextProvider";
+
+import { useState } from "react";
 import uuid from "react-uuid";
+import { PropList } from "./CreatePizza"
 
 
-const Base = () => {
-  const { dispatch } = useContext(PizzaContext)
+
+
+const Base = ({pizza, setPizza}: PropList) => {  
   const [base, setBase] = useState({size: "", price: ""});
 
   const handleClick = () => {
-    dispatch ({
-      type: "ADD",
-      payload: { id: uuid(), size: base.size, totalPrice: Number(base.price), topping: [] }
-    })
+    setPizza({...pizza, id: uuid(), size: base.size, price: Number(base.price)});    
   }
   
   return (

@@ -1,9 +1,10 @@
 import { createContext, useReducer } from "react";
 import uuid from "react-uuid";
 
-type Pizza = {
+export type Pizza = {
   // size: "Original" | "BarnPizza" | "FamiljePizza";
   id: string;
+  isReady: boolean;
   size: string;
   topping: Topping[];
   totalPrice: number;
@@ -31,12 +32,14 @@ const InitialPizza: PizzaState = {
   pizzas: [
     {
       id: uuid(),
+      isReady: true,
       size: "Original",
       topping: [{ name: "skinka", price: 30 }],
       totalPrice: 50,
     },
     {
       id: uuid(),
+      isReady: true,
       size: "BarnPizza",
       topping: [
         { name: "pommes", price: 10 },
@@ -52,7 +55,7 @@ const reducer = (state: PizzaState, action: Action) => {
     case "ADD":
       console.log(state);
       return {
-        pizzas: [...state.pizzas, action.payload],
+        pizzas: [action.payload, ...state.pizzas],
       };
 
     case "REMOVE":
