@@ -21,7 +21,7 @@ const InitialPizza: PizzaState = {
     },
     {
         size: "BarnPizza",
-        topping: ["pommes", "oliver"]
+        topping: ["pommes", "oliv"]
     }
   ],
 };
